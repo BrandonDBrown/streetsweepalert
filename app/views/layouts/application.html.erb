@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>StreetSweep</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+   
+        <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfimdJC2dx2NzI5PPIl-4bDmvupayoF1M&callback=initMap">
+    </script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body class='<%= controller.controller_name %>'>
+
+<%= yield %>
+    
+</body>
+</html>
