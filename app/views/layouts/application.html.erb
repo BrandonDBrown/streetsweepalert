@@ -15,13 +15,15 @@
     <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="active"><%= link_to 'Home', root_path %></li>
-              <li role="presentation" class="active"><%= link_to 'My Map', map_path %></li>
+            <li role="presentation"><%= link_to 'Home', root_path %></li>
+              <li role="presentation"><%= link_to 'My Map', map_path %></li>
+              <li><%= link_to "Log in", '#' %></li>
           </ul>
         </nav>
-                <h3 class="text-muted">Street Sweep</h3>
+                <h3 class="text-muted"><%= link_to "Street Sweep", root_path %></h3>
       </div>
 <%= yield %>
+    <%= render 'layouts/footer' %>
     </div>
 </body>
 </html>
