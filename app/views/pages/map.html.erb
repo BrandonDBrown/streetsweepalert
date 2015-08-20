@@ -1,10 +1,9 @@
-<br>
-<br>
-<br>
-<%= link_to "Home", root_path %>
-    <nav id='menu-ui' class='menu-ui'></nav>
-<div id='map'></div>
+<div class="col-md-12">
+    <div id='map'></div>
+</div>
+</div>
 <script>
+    
 var data = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"title":"Street Sweeping","description":"Right: Tues 8-10. Left: Wed 8-10","stroke":"#1087bf","stroke-width":4,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183697,33.766875],[-118.183697,33.768053]],"type":"LineString"}}]};
     
 var map = L.map('map').locate({setView: true, maxZoom: 17});
@@ -24,3 +23,12 @@ L.geoJson(data, {onEachFeature: function (feature, layer) {
 map.on('locationfound', onLocationFound);
 
 </script>
+
+
+
+
+
+
+
+
+

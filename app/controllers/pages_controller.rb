@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def home
   end
-    
-  def openmaps
+ 
+  def maps
   end
 end

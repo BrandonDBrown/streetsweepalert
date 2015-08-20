@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>StreetSweep</title>
+  <title><%= full_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
      <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
      <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
-    
-<!--
-  <script src='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/v2.2.1/mapbox.css' rel='stylesheet' />
--->
-
-    
      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
   <%= csrf_meta_tags %>
 </head>
 <body class='<%= controller.controller_name %>'>
-
+<div class="container">
+    <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><%= link_to 'Home', root_path %></li>
+              <li role="presentation" class="active"><%= link_to 'My Map', map_path %></li>
+          </ul>
+        </nav>
+                <h3 class="text-muted">Street Sweep</h3>
+      </div>
 <%= yield %>
-    
+    </div>
 </body>
 </html>
