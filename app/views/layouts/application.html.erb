@@ -10,6 +10,7 @@
 
   <%= csrf_meta_tags %>
 </head>
+    
 <body class='<%= controller.controller_name %>'>
 <div class="container">
     <div class="header clearfix">
@@ -18,10 +19,14 @@
             <li role="presentation"><%= link_to 'Home', root_path %></li>
               <li role="presentation"><%= link_to 'My Map', map_path %></li>
               <li><%= link_to "Log in", '#' %></li>
+
           </ul>
         </nav>
                 <h3 class="text-muted"><%= link_to "Street Sweep", root_path %></h3>
       </div>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
 <%= yield %>
     <%= render 'layouts/footer' %>
     </div>
