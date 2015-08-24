@@ -16,9 +16,17 @@
     <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills pull-right">
+              <% if logged_in? %>
+                <li><%= gravatar_for @user %></li>
+                <li role="presentation"><%= link_to 'My Map', current_user %></li>
+                <li>
+                <%= link_to "Log out", logout_path, method: "delete" %>
+              </li>
+              <% else %>
             <li role="presentation"><%= link_to 'Home', root_path %></li>
-              <li role="presentation"><%= link_to 'My Map', map_path %></li>
-              <li><%= link_to "Log in", '#' %></li>
+              
+              <li><%= link_to "Log in", login_path %></li>
+              <% end %>
 
           </ul>
         </nav>
