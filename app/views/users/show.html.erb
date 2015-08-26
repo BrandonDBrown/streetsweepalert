@@ -1,9 +1,9 @@
+
 <% provide(:title, @user.name) %>
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
       <h1>
-        <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
     </section>
@@ -14,8 +14,10 @@
     <div id='map'></div>
 </div>
 
+
+
 <script>
-    
+
 var data = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"title":"Lime between 1st and Broadway","description":"Left: Wednesday 8am-10am Right: Tuesday 4am-8am","stroke":"#1087bf","stroke-width":4,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183692,33.769194],[-118.183692,33.768204]],"type":"LineString"},"id":"311861fed7536e66b572cdf8c7fc6e41"},{"type":"Feature","properties":{"title":"Medio st and Lime","description":"Left: Wed 8-10 Right: Tues 8-10  ","stroke":"#1087bf","stroke-width":4,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183595,33.766866],[-118.182908,33.766866]],"type":"LineString"},"id":"562d6bf397747e8ac37f090852aca042"},{"type":"Feature","properties":{"title":"Lime and 1st","description":"Left: Wednesday 8am-10am\nRight: Tuesday 8am-10am","stroke":"#1087bf","stroke-width":4,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183686,33.768008],[-118.183692,33.766875]],"type":"LineString"}}]};
     
 var map = L.map('map').locate({setView: true, maxZoom: 17});
@@ -35,3 +37,22 @@ L.geoJson(data, {onEachFeature: function (feature, layer) {
 map.on('locationfound', onLocationFound);
 
 </script>
+
+ 
+    <script src="https://apis.google.com/js/client.js?onload=checkAuth">
+    </script>
+
+    <div id="authorize-div" style="display: none">
+      <span>Authorize access to Google Calendar API</span>
+      <!--Button for the user to click to initiate auth sequence -->
+      <button id="authorize-button" onclick="handleAuthClick(event)">
+        Authorize
+      </button>
+        
+    </div>
+<div class="col-sm-6 col-sm-offset-3 center">
+    <button id="createEvent" class= "btn btn-lg btn-primary" onclick="loadCalendarApi()">Create Event</button>
+</div>
+<!--    <pre id="output"></pre>-->
+         
+
