@@ -2,8 +2,11 @@
       // Your Client ID can be retrieved from your project in the Google
       // Developer Console, https://console.developers.google.com
       var CLIENT_ID = '845919965723-jte5403epcbbcagjqojk8325a2jchbnk.apps.googleusercontent.com';
-
       var SCOPES = ["https://www.googleapis.com/auth/calendar"];
+
+      var d = new Date();
+      var n = d.getMonth() + 1;
+      var y = d.getYear() + 1900;
 
 
       /**
@@ -48,6 +51,12 @@
         return false;
       }
 
+
+//THIS FOLLOWING JAVASCRIPT WILL SET THE "EVENTZ" VARIABLES OPTIONS VIA LEAFLET MAP
+
+   
+
+
       /**
        * Load Google Calendar client library. List upcoming events
        * once client library is loaded.
@@ -56,35 +65,76 @@
         gapi.client.load('calendar', 'v3', listUpcomingEvents);
       }
 
-var eventz = {
-  'summary': 'Google 2015',
-  'location': '800 Howard St., San Francisco, CA 94103',
-  'description': 'A chance to hear more about Google\'s developer products.',
-  'start': {
-    'dateTime': '2015-08-26T09:00:00-07:00',
-    'timeZone': 'America/Los_Angeles'
-  },
-  'end': {
-    'dateTime': '2015-08-26T17:00:00-07:00',
-    'timeZone': 'America/Los_Angeles'
-  },
-  'recurrence': [
-    'RRULE:FREQ=DAILY;COUNT=1'
-  ],
-  'reminders': {
-    'useDefault': false,
-    'overrides': [
-      {'method': 'popup', 'minutes': 60},
-      {'method': 'popup', 'minutes': 10}
-    ]
-  }
-};
+      function loadCalendarApiL() {
+        gapi.client.load('calendar', 'v3', listUpcomingEventsL);
+      }
+
       /**
        * Print the summary and start datetime/date of the next ten events in
        * the authorized user's calendar. If no events are found an
        * appropriate message is printed.
        */
       function listUpcomingEvents() {
+          var temp = document.getElementById('description').value.split(" ")
+          var eventz = {
+            'summary': 'Move Car for Street Sweeping',
+            'location': document.getElementById('title').value,
+            'description': temp[0] + temp[3],
+            'start': {
+                'dateTime': y + '-' + n + '-26T' + temp[1] +'-07:00',
+                'timeZone': 'America/Los_Angeles'
+            },
+            'end': {
+                'dateTime': y + '-' + n + '-26T' + temp[2] +'-07:00',
+                'timeZone': 'America/Los_Angeles'
+            },
+            'recurrence': [
+                'RRULE:FREQ=DAILY;COUNT=1'
+            ],
+            'reminders': {
+                'useDefault': false,
+                'overrides': [
+                    {'method': 'popup', 'minutes': 60},
+                    {'method': 'popup', 'minutes': 10}
+                ]
+            }
+      };
+
+          var request = gapi.client.calendar.events.insert({
+            'calendarId': 'primary',
+            'resource': eventz
+          });
+
+            request.execute(function(event) {
+            appendPre('Event created: ' + event.htmlLink);
+            });
+      };
+
+      function listUpcomingEventsL() {
+          var eventz = {
+            'summary': 'Move Car for Street Sweeping',
+            'location': document.getElementById('title').value,
+            'description': document.getElementById('description').value,
+            'start': {
+                'dateTime': y + '-' + n + '-26T' + temp[4] +'-07:00',
+                'timeZone': 'America/Los_Angeles'
+            },
+            'end': {
+                'dateTime': y + '-' + n + '-26T' + temp[5] +'-07:00',
+                'timeZone': 'America/Los_Angeles'
+            },
+            'recurrence': [
+                'RRULE:FREQ=DAILY;COUNT=1'
+            ],
+            'reminders': {
+                'useDefault': false,
+                'overrides': [
+                    {'method': 'popup', 'minutes': 60},
+                    {'method': 'popup', 'minutes': 10}
+                ]
+            }
+      };
+
 var request = gapi.client.calendar.events.insert({
   'calendarId': 'primary',
   'resource': eventz
