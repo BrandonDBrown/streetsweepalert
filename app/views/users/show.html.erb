@@ -15,14 +15,15 @@
   <div id="map" style='width: 800px; height: 400px;'></div>
 </div>
 
-<input id="title" type="text" style="width:600px;"/><br/>
-<input id="description" type="text" style="width:600px;"/><br/>
-<input id="address" type="text" style="width:600px;"/><br/>
+<input id="title" type="text" style="display:none;"/><br/>
+<input id="description" type="text" style="display:none;"/><br/>
+
 
 
 <script type="text/javascript">
-    var data = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"title":"Lime between 1st and Broadway","description":"Wednesday 08:00:00 10:00:00 Tuesday 04:00:00 08:00:00","stroke":"#1087bf","stroke-width":4,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183692,33.769194],[-118.183692,33.768204]],"type":"LineString"},"id":"311861fed7536e66b572cdf8c7fc6e41"},{"type":"Feature","properties":{"title":"Medio st and Lime","description":"Left: Wed 8-10 Right: Tues 8-10  ","stroke":"#1087bf","stroke-width":4,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183595,33.766866],[-118.182908,33.766866]],"type":"LineString"},"id":"562d6bf397747e8ac37f090852aca042"},{"type":"Feature","properties":{"title":"Lime and 1st","description":"Left: Wednesday 8am-10am\nRight: Tuesday 8am-10am","stroke":"#1087bf","stroke-width":4,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183686,33.768008],[-118.183692,33.766875]],"type":"LineString"}}]};
-    
+    var data = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"title":"Lime between 1st and Broadway","description":"Wednesday 08:00:00 10:00:00 Tuesday 04:00:00 08:00:00","stroke":"#1087bf","stroke-width":4,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183692,33.769194],[-118.183692,33.768204]],"type":"LineString"},"id":"311861fed7536e66b572cdf8c7fc6e41"},{"type":"Feature","properties":{"title":"Medio st between Alamitos and Lime","description":"Wednesday 08:00:00 10:00:00 Tuesday 08:00:00 10:00:00","stroke":"#1087bf","stroke-width":4,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183595,33.766866],[-118.182908,33.766866]],"type":"LineString"},"id":"562d6bf397747e8ac37f090852aca042"},{"type":"Feature","properties":{"title":"Lime between 1st and Medio","description":"Wednesday 08:00:00 10:00:00 Tuesday 08:00:00 10:00:00","stroke":"#1087bf","stroke-width":4,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183686,33.768008],[-118.183692,33.766875]],"type":"LineString"}}]};
+
+
 var map = L.map('map').locate({setView: true, maxZoom: 17});
     
 L.tileLayer('https://api.tiles.mapbox.com/v4/brandon2.n6ne1ipc/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYnJhbmRvbjIiLCJhIjoiNTdiYjRlNDkwNTg2MGFhY2E2ZTY3YTZiZGFiYmJkYjAifQ.vbf_uXqBVoe3fDCnC5zdPw', {
@@ -35,14 +36,20 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/brandon2.n6ne1ipc/{z}/{x}/{y}.png?a
 L.geoJson(data, {onEachFeature: function (feature, layer) {
 //        layer.bindPopup(feature.properties.description);
     
-            layer.on('click', function(e) {
+        layer.on('click', function(e) {
             var myHTML = feature.properties.title;
             $('#title').val(myHTML);
             var myHTML2 = feature.properties.description;
             $('#description').val(myHTML2);
+            
         })
+        var zz = feature.properties.description;
+        var b = zz.split(" ");
+        layer.bindPopup('<strong><center>Create a reminder:</center></strong></br><button class="btn btn-primary" onclick="loadCalendarApiR()">' + b[0]+'</button> <button class="btn btn-primary" onclick="loadCalendarApiL()">' + b[3]+'</button>')
 }})
-    .bindPopup('<button class="trigger" onclick="alertz()">Wednesday</button>')
+
+
+    
     .addTo(map);
 
 map.on('locationfound', onLocationFound);
@@ -51,9 +58,7 @@ map.on('locationfound', onLocationFound);
 //    alert('Hello from Toronto!');
 //});   
     
-function alertz() {
-    alert('Hello from Toronto');
-};
+
 
 </script>
 
@@ -68,9 +73,6 @@ function alertz() {
       </button>
         
     </div>
-<div class="col-sm-6 col-sm-offset-3 center">
-    <button id="createEvent" class= "btn btn-lg btn-primary" onclick="loadCalendarApi()">Create Event</button>
-</div>
-<!--    <pre id="output"></pre>-->
+
          
 
