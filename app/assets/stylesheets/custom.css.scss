@@ -22,12 +22,19 @@ body {
   line-height: 40px;
 }
 
+.container>.navbar-header {
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.nav>li>a {
+    padding-left:45px;
+}
+
 /* Customize container */
 @media (min-width: 768px) {
   .container {
     max-width: 730px;
-    padding-right:0px;
-    padding-left:0px;
   }
 }
 

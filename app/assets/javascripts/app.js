@@ -100,6 +100,11 @@ function dateOfNext(weekdayNumber) {
       };
 
       function listUpcomingEventsL() {
+          $('#setTime').hide();
+          $('.setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                    $(this).removeClass('animated slideInUp');
+            });
+          
           var temp = document.getElementById('description').value.split(" ")
           var nextWednesday = dateOfNext(dayOfWeekAsInteger(temp[3]));
           var movedate = nextWednesday.getDate();
