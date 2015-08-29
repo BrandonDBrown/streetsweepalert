@@ -18,58 +18,62 @@
 <input id="title" type="text" style="display:none;"/><br/>
 <input id="description" type="text" style="display:none;"/><br/>
 
+<div class= "col-md-12" id="setTime"><strong><center>Create a reminder:</center></strong></br><center><button class="btn btn-primary" id="setTime1" onclick="loadCalendarApiL()"></button> <button class="btn btn-primary" id="setTime2" onclick="loadCalendarApiR()"></button></center></div>
 
+<div class= "col-md-12 setTime">
+    <h5>Created Google calendar reminder.</h5>
+</div>
+
+<div id="authorize-div" style="display: none">
+    <span>Authorize access to Google Calendar API</span>
+    <!--Button for the user to click to initiate auth sequence -->
+    <button id="authorize-button" onclick="handleAuthClick(event)">
+        Authorize
+    </button>
+        
+    </div>
 
 <script type="text/javascript">
-    var data = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"title":"Lime between 1st and Broadway","description":"Wednesday 08:00:00 10:00:00 Tuesday 04:00:00 08:00:00","stroke":"#1087bf","stroke-width":10,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183692,33.769194],[-118.183692,33.768204]],"type":"LineString"},"id":"311861fed7536e66b572cdf8c7fc6e41"},{"type":"Feature","properties":{"title":"Medio st between Alamitos and Lime","description":"Wednesday 08:00:00 10:00:00 Tuesday 08:00:00 10:00:00","stroke":"#1087bf","stroke-width":10,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183595,33.766866],[-118.182908,33.766866]],"type":"LineString"},"id":"562d6bf397747e8ac37f090852aca042"},{"type":"Feature","properties":{"title":"Lime between 1st and Medio","description":"Wednesday 08:00:00 10:00:00 Tuesday 08:00:00 10:00:00","stroke":"#1087bf","stroke-width":10,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183686,33.768008],[-118.183692,33.766875]],"type":"LineString"}}]};
+
+var data = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"title":"Lime between 1st and Broadway","description":"Wednesday 08:00:00 10:00:00 Tuesday 04:00:00 08:00:00","stroke":"#1087bf","stroke-width":10,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183692,33.769194],[-118.183692,33.768204]],"type":"LineString"}},{"type":"Feature","properties":{"title":"Medio st between Alamitos and Lime","description":"Wednesday 08:00:00 10:00:00 Tuesday 08:00:00 10:00:00","stroke":"#1087bf","stroke-width":10,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183595,33.766866],[-118.182908,33.766866]],"type":"LineString"}},{"type":"Feature","properties":{"title":"Lime between 1st and Medio","description":"Wednesday 08:00:00 10:00:00 Tuesday 08:00:00 10:00:00","stroke":"#1087bf","stroke-width":10,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183686,33.768008],[-118.183692,33.766875]],"type":"LineString"}}]};
 
 
 var map = L.map('map').locate({setView: true, maxZoom: 17, tap: true,});
     
 L.tileLayer('https://api.tiles.mapbox.com/v4/brandon2.n6ne1ipc/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYnJhbmRvbjIiLCJhIjoiNTdiYjRlNDkwNTg2MGFhY2E2ZTY3YTZiZGFiYmJkYjAifQ.vbf_uXqBVoe3fDCnC5zdPw', {
-    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18
 }).addTo(map);
 
+//        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
  
-
+//$.getJSON("/data.json", function(data) {
 L.geoJson(data, {onEachFeature: function (feature, layer) {
 //        layer.bindPopup(feature.properties.description);
-    
-        layer.on('touchstart', function(e) {
+        var zz = feature.properties.description;
+        var b = zz.split(" ");
+//        layer.bindPopup('<strong><center>Create a reminder:</center></strong></br><button class="btn btn-primary" onclick="loadCalendarApiL()">' + b[3]+'</button> <button class="btn btn-primary" onclick="loadCalendarApiR()">' + b[0]+'</button>')
+        layer.on('click', function() {
             var myHTML = feature.properties.title;
             $('#title').val(myHTML);
             var myHTML2 = feature.properties.description;
             $('#description').val(myHTML2);
-            
+            document.getElementById('setTime1').innerHTML = b[3] +b[4];
+            document.getElementById('setTime2').innerHTML = b[0] + b[1];
+            $('.setTime').hide();
+            $('#setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                    $(this).removeClass('animated slideInUp');
+            });
         })
-        var zz = feature.properties.description;
-        var b = zz.split(" ");
-        layer.bindPopup('<strong><center>Create a reminder:</center></strong></br><button class="btn btn-primary" onclick="loadCalendarApiR()">' + b[0]+'</button> <button class="btn btn-primary" onclick="loadCalendarApiL()">' + b[3]+'</button>')
-}})   
-    .addTo(map);
+ }}).addTo(map);
 
-map.on('locationfound', onLocationFound);
-
-// $('#map').on('click', '.trigger', function() {
-//    alert('Hello from Toronto!');
-//});   
-    
-
+map.on('locationfound', onLocationFound);   
 
 </script>
 
-    <script src="https://apis.google.com/js/client.js?onload=checkAuth">
+<script src="https://apis.google.com/js/client.js?onload=checkAuth">
     </script>
 
-    <div id="authorize-div" style="display: none">
-      <span>Authorize access to Google Calendar API</span>
-      <!--Button for the user to click to initiate auth sequence -->
-      <button id="authorize-button" onclick="handleAuthClick(event)">
-        Authorize
-      </button>
-        
-    </div>
+
 
          
 

@@ -148,4 +148,48 @@ aside {
         margin-top:25px;
     }
 
+#setTime {
+    background-color:#d8b8b0;
+    opacity:.95;
+    padding-top:10px;
+    padding-bottom:10px;
+    position:absolute;
+    top:418px;
+    right:0;
+    left:0;
+    display:none;
+}
+
+.setTime {
+    text-align:center;
+    background-color:#d8b8b0;
+    opacity:.95;
+    padding-top:30px;
+    padding-bottom:30px;
+    position:absolute;
+    top:418px;
+    right:0;
+    left:0;
+    display:none;
+}
+
+.btn-primary {
+    background-color:#A4B5AB;
+    border-color:#A4B5AB;
+}
+
+.btn-primary:active {
+    background-color:#A4B5AB;
+    border-color:#A4B5AB;
+}
+
+.btn-primary:hover {
+    background-color:#A4B5AB;
+    border-color:#A4B5AB;
+}
+//#yourElement {
+//  -vendor-animation-duration: 3s;
+//  -vendor-animation-delay: 2s;
+//  -vendor-animation-iteration-count: infinite;
+//}
 
