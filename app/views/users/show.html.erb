@@ -23,7 +23,7 @@
 
 <div class="row">
     <div class= "col-md-12 intro">
-        Click on a street to set a reminder.
+        Click a street. Set a reminder.
     </div>
 </div>
 
@@ -68,8 +68,8 @@ L.geoJson(data, {onEachFeature: function (feature, layer) {
             $('#title').val(myHTML);
             var myHTML2 = feature.properties.description;
             $('#description').val(myHTML2);
-            document.getElementById('setTime1').innerHTML = "Set reminder for "+ b[3].substring(0,3)+ " at " +b[4].slice(1, -6) + "am";
-            document.getElementById('setTime2').innerHTML = "Set reminder for "+b[0].substring(0,3)+ " at " + b[1].slice(1, -6) + "am";
+            document.getElementById('setTime1').innerHTML = "Set for "+ b[3].substring(0,3)+ " " +b[4].slice(1, -6) + "am";
+            document.getElementById('setTime2').innerHTML = "Set for "+b[0].substring(0,3)+ " " + b[1].slice(1, -6) + "am";
             $('.setTime').hide();
             $('.intro').hide();
             $('#setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
