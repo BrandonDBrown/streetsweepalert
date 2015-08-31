@@ -201,7 +201,7 @@ aside {
 	left: 0;
     width:100%;
 //    display:none;
-    font-size:20px;
+    font-size:18px;
     color:white;
     height:13vh;
 }
@@ -236,7 +236,8 @@ aside {
 }
 
 .btn-primary:focus{
-    outline: none;
+    background-color:#c91d1a;
+    outline: 0;
     border-radius:0;   
 }
 
@@ -245,6 +246,7 @@ aside {
     padding-right:0px;
 //    padding-top:0px;
 }
+
 
 
 
