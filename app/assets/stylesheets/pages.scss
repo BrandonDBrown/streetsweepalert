@@ -225,21 +225,25 @@ aside {
     border-color:#E65F5C;
 }
 
-.btn-primary {
+.btn {
     background-color:#E65F5C;
     border-color:#E65F5C;
 }
 
-.btn-primary:hover {
-    background-color:#E65F5C;
-    border-color:#E65F5C;
-}
-
-.btn-primary:focus{
+.btn:hover {
     background-color:#c91d1a;
-    outline: 0;
+    border-color:#c91d1a;
+}
+
+.btn:focus{
+    background-color:#E65F5C;
+    outline: none;
     border-radius:0;   
 }
+
+  .btn:active {
+      background-color: #E65F5C;
+    }
 
 .col-md-12 {
     padding-left:0px;
