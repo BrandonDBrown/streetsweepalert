@@ -173,6 +173,8 @@ aside {
 
 
 .setTime {
+    font-family: 'Josefin Sans', sans-serif;
+//    letter-spacing:1px;
     text-align:center;
     background-color:#E65F5C;
     line-height: 13vh;
@@ -184,12 +186,14 @@ aside {
 	bottom: 0;
 	left: 0;
     width:100%;
-    font-size:18px;
+    font-size:20px;
     color:white;
     height:13vh;
 }
 
 .intro {
+    font-family: 'Josefin Sans', sans-serif;
+//    letter-spacing:1px;
     text-align:center;
     background-color:#E65F5C;
     line-height: 13vh;
@@ -201,7 +205,7 @@ aside {
 	left: 0;
     width:100%;
 //    display:none;
-    font-size:17px;
+    font-size:18px;
     color:white;
     height:13vh;
 }
@@ -213,10 +217,12 @@ aside {
 }
 
 .setAlert {
+    font-family: 'Josefin Sans', sans-serif;
+//    letter-spacing:1px;
     width:50%;
     border-radius:0;
     height:13vh;
-    font-size:18px;
+    font-size:20px;
     color:white;
 }
 
