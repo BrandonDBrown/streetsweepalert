@@ -152,7 +152,7 @@ aside {
 
 #setTime {
 //    background-color:#E65F5C;
-    opacity:.95;
+//    opacity:.95;
 //    padding-top:10px;
 //    padding-bottom:20px;
 //    position:absolute;
@@ -172,7 +172,7 @@ aside {
 .setTime {
     text-align:center;
     background-color:#E65F5C;
-    opacity:.95;
+//    opacity:.95;
     padding-top:30px;
     padding-bottom:30px;
     display:none;
@@ -180,7 +180,7 @@ aside {
 	bottom: 0;
 	left: 0;
     width:100%;
-    font-size:3vw;
+    font-size:20px;
     color:white;
     height:13vh;
 }
@@ -188,7 +188,7 @@ aside {
 .intro {
     text-align:center;
     background-color:#E65F5C;
-    opacity:.95;
+//    opacity:.95;
     padding-top:30px;
     padding-bottom:30px;
     position: fixed;
@@ -203,7 +203,7 @@ aside {
 
 
 #setTime1 {
-    border-right: 1px solid #d8b8b0;
+    border-right: 3px solid #e5706e;
     
 }
 
@@ -227,8 +227,13 @@ aside {
 }
 
 .btn-primary:hover {
-    background-color:#d8b8b0;
-    border-color:#d8b8b0;
+    background-color:#E65F5C;
+    border-color:#E65F5C;
+}
+
+.btn-primary:focus{
+    outline: none;
+    border-radius:0;   
 }
 
 .col-md-12 {

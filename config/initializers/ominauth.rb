@@ -9,7 +9,6 @@ end
 
 
 
-
-
-
 #redirect_uri:'http://localhost:3000/auth/google_oauth2/callback'
+
+

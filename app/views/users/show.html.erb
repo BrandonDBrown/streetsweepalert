@@ -17,13 +17,13 @@
 
 <div class="row">
     <div class= "col-md-12 setTime">
-        <span>Created Google calendar reminder.</span>
+        <i class= "fa fa-calendar fa-lg"></i> Google reminder set.
     </div>
 </div>
 
 <div class="row">
     <div class= "col-md-12 intro">
-        Click a street. Set a reminder.
+        <i class="fa fa-road fa-inverse fa-lg"></i> Click a street. <i class='fa fa-bell-o fa-lg'></i> Set a reminder.
     </div>
 </div>
 
@@ -68,8 +68,8 @@ L.geoJson(data, {onEachFeature: function (feature, layer) {
             $('#title').val(myHTML);
             var myHTML2 = feature.properties.description;
             $('#description').val(myHTML2);
-            document.getElementById('setTime1').innerHTML = "Set for "+ b[3].substring(0,3)+ " " +b[4].slice(1, -6) + "am";
-            document.getElementById('setTime2').innerHTML = "Set for "+b[0].substring(0,3)+ " " + b[1].slice(1, -6) + "am";
+            document.getElementById('setTime1').innerHTML = "<i class='fa fa-bell-o fa-lg'></i> " + b[3].substring(0,3).toUpperCase()+ " " +b[4].slice(1, -6) + "am";
+            document.getElementById('setTime2').innerHTML = "<i class='fa fa-bell-o fa-lg'></i> "+b[0].substring(0,3).toUpperCase()+ " " + b[1].slice(1, -6) + "am";
             $('.setTime').hide();
             $('.intro').hide();
             $('#setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {

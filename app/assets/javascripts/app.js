@@ -66,7 +66,7 @@ function dateOfNext(weekdayNumber) {
           }
           
           var eventz = {
-            'summary': 'Move Car for Street Sweeping',
+            'summary': 'Move Car ' + document.getElementById('title').value,
             'location': document.getElementById('title').value,
             'description': document.getElementById('title').value,
             'start': {
@@ -121,7 +121,7 @@ function dateOfNext(weekdayNumber) {
           }
           
           var eventz = {
-            'summary': 'Move Car for Street Sweeping',
+            'summary': 'Move Car ' + document.getElementById('title').value,
             'location': document.getElementById('title').value,
             'description': document.getElementById('title').value,
             'start': {
