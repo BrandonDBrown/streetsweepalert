@@ -143,16 +143,18 @@ aside {
     }
     
     #map {
-        height:100vh;
-        width:100%;
+        height:93vh;
+        position:fixed;
+        right:0;
+        left:0;
         margin-top:30px;
     }
 
 #setTime {
-    background-color:#d8b8b0;
+//    background-color:#E65F5C;
     opacity:.95;
-    padding-top:10px;
-    padding-bottom:20px;
+//    padding-top:10px;
+//    padding-bottom:20px;
 //    position:absolute;
 //    top:418px;
 //    right:0px;
@@ -164,50 +166,80 @@ aside {
 	bottom: 0;
 	left: 0;
     width:100%;
+    height:13vh;
 }
 
 .setTime {
     text-align:center;
-    background-color:#d8b8b0;
+    background-color:#E65F5C;
     opacity:.95;
     padding-top:30px;
     padding-bottom:30px;
-//    position:absolute;
-//    top:418px;
-//    right:0;
-//    left:0;
     display:none;
     position: fixed;
 	bottom: 0;
 	left: 0;
     width:100%;
+    font-size:20px;
+    color:white;
+    height:13vh;
 }
 
 .intro {
     text-align:center;
-    background-color:#d8b8b0;
+    background-color:#E65F5C;
     opacity:.95;
-    padding-top:20px;
-    padding-bottom:20px;
+    padding-top:30px;
+    padding-bottom:30px;
     position: fixed;
 	bottom: 0;
 	left: 0;
     width:100%;
+//    display:none;
+    font-size:20px;
+    color:white;
+    height:13vh;
 }
 
-.btn {
-    margin-top:5px;
+
+#setTime1 {
+    border-right: 1px solid #d8b8b0;
     
 }
-//.btn-primary {
-//    background-color:#A4B5AB;
-//    border-color:#A4B5AB;
-//}
-//
-//.btn-primary:hover {
-//    background-color:#A4B5AB;
-//    border-color:#A4B5AB;
-//}
+
+.setAlert {
+    width:50%;
+    border-radius:0;
+    height:13vh;
+    font-size:3vw;
+
+}
+
+.date {
+    height:13vh;
+    background-color:#E65F5C;
+    border-color:#E65F5C;
+}
+
+.btn-primary {
+    background-color:#E65F5C;
+    border-color:#E65F5C;
+}
+
+.btn-primary:hover {
+    background-color:#d8b8b0;
+    border-color:#d8b8b0;
+}
+
+.col-md-12 {
+    padding-left:0px;
+    padding-right:0px;
+//    padding-top:0px;
+}
+
+
+
+
 
 
 

@@ -10,19 +10,20 @@
 <input id="description" type="text" style="display:none;"/><br/>
 
 <div class="row">
-    <div class= "col-md-12" id="setTime"><h4>Create a reminder:</h4><center><button class="btn btn-primary" id="setTime1" onclick="loadCalendarApiL()"></button> <button class="btn btn-primary" id="setTime2" onclick="loadCalendarApiR()"></button></center>
+    <div class= "col-md-12" id="setTime">
+        <button class="btn btn-primary setAlert" id="setTime1" onclick="loadCalendarApiL()"></button><button class="btn btn-primary setAlert" id="setTime2" onclick="loadCalendarApiR()"></button>
     </div>
 </div>
 
 <div class="row">
     <div class= "col-md-12 setTime">
-        <h5>Created Google calendar reminder.</h5>
+        <span>Created Google calendar reminder.</span>
     </div>
 </div>
 
 <div class="row">
     <div class= "col-md-12 intro">
-        <h4>Click on a street to set a reminder.</h4>
+        Click on a street to set a reminder.
     </div>
 </div>
 
@@ -36,10 +37,10 @@
 
 <script type="text/javascript">
 
-var data = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"title":"Lime between 1st and Broadway","description":"Wednesday 08:00:00 10:00:00 Tuesday 04:00:00 08:00:00","stroke":"#1087bf","stroke-width":10,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183692,33.769194],[-118.183692,33.768204]],"type":"LineString"}},{"type":"Feature","properties":{"title":"Medio st between Alamitos and Lime","description":"Wednesday 08:00:00 10:00:00 Tuesday 08:00:00 10:00:00","stroke":"#1087bf","stroke-width":10,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183595,33.766866],[-118.182908,33.766866]],"type":"LineString"}},{"type":"Feature","properties":{"title":"Lime between 1st and Medio","description":"Wednesday 08:00:00 10:00:00 Tuesday 08:00:00 10:00:00","stroke":"#1087bf","stroke-width":10,"stroke-opacity":1},"geometry":{"coordinates":[[-118.183686,33.768008],[-118.183692,33.766875]],"type":"LineString"}}]};
+var data = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"title":"Lime between 1st and Broadway","description":"Wednesday 08:00:00 10:00:00 Tuesday 04:00:00 08:00:00","color": "#A4B5AB", "weight": 5, "opacity": 0.65},"geometry":{"coordinates":[[-118.183692,33.769194],[-118.183692,33.768204]],"type":"LineString"},"id":"311861fed7536e66b572cdf8c7fc6e41"},{"type":"Feature","properties":{"title":"Lime between 1st and Medio","description":"Wednesday 08:00:00 10:00:00 Tuesday 08:00:00 10:00:00","color": "#A4B5AB", "weight": 5, "opacity": 0.65},"geometry":{"coordinates":[[-118.183595,33.766866],[-118.182908,33.766866]],"type":"LineString"},"id":"562d6bf397747e8ac37f090852aca042"},{"type":"Feature","properties":{"title":"Lime between 1st and Medio","description":"Wednesday 08:00:00 10:00:00 Tuesday 08:00:00 10:00:00","color": "#A4B5AB", "weight": 5, "opacity": 0.65},"geometry":{"coordinates":[[-118.183686,33.768008],[-118.183692,33.766875]],"type":"LineString"},"id":"6215d40cfebdb08b7d586b1c99e955e9"}],"id":"brandon2.n6ne1ipc"}
 
 
-var map = L.map('map').locate({setView: true, maxZoom: 17, tap: true,});
+var map = L.map('map').locate({setView: true, maxZoom: 17});
     
 L.tileLayer('https://api.tiles.mapbox.com/v4/brandon2.n6ne1ipc/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYnJhbmRvbjIiLCJhIjoiNTdiYjRlNDkwNTg2MGFhY2E2ZTY3YTZiZGFiYmJkYjAifQ.vbf_uXqBVoe3fDCnC5zdPw', {
     maxZoom: 18
@@ -47,9 +48,18 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/brandon2.n6ne1ipc/{z}/{x}/{y}.png?a
 
 //        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
  
-//$.getJSON("/data.json", function(data) {
+var myStyle = {
+    "weight": 10
+};    
+    
+    
 L.geoJson(data, {onEachFeature: function (feature, layer) {
 //        layer.bindPopup(feature.properties.description);
+            layer.setStyle({
+                weight: 10,
+                color: "#A4B5AB", 
+                opacity: .8
+            });
         var zz = feature.properties.description;
         var b = zz.split(" ");
 //        layer.bindPopup('<strong><center>Create a reminder:</center></strong></br><button class="btn btn-primary" onclick="loadCalendarApiL()">' + b[3]+'</button> <button class="btn btn-primary" onclick="loadCalendarApiR()">' + b[0]+'</button>')
@@ -58,8 +68,8 @@ L.geoJson(data, {onEachFeature: function (feature, layer) {
             $('#title').val(myHTML);
             var myHTML2 = feature.properties.description;
             $('#description').val(myHTML2);
-            document.getElementById('setTime1').innerHTML = b[3] +b[4];
-            document.getElementById('setTime2').innerHTML = b[0] + b[1];
+            document.getElementById('setTime1').innerHTML = "Set reminder for "+ b[3].substring(0,3)+ " at " +b[4].slice(1, -6) + "am";
+            document.getElementById('setTime2').innerHTML = "Set reminder for "+b[0].substring(0,3)+ " at " + b[1].slice(1, -6) + "am";
             $('.setTime').hide();
             $('.intro').hide();
             $('#setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
