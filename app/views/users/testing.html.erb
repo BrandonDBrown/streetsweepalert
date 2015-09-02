@@ -38,7 +38,7 @@
 
 <script type="text/javascript">
         
-var data =[{"type":"Feature","properties":{"title":"Lime between 1st and Broadway","description":"Wednesday 08:00:00 09:00:00 Tuesday 04:00:00 08:00:00","color": "#A4B5AB", "weight": 10, "opacity": 0.65},"geometry":{"coordinates":[[-118.183692,33.769194],[-118.183692,33.768204]],"type":"LineString"},"id":"311861fed7536e66b572cdf8c7fc6e41"},{"type":"Feature","properties":{"title":"Lime between 1st and Medio","description":"Wednesday 08:00:00 09:00:00 Tuesday 08:00:00 09:00:00","color": "#A4B5AB", "weight": 10, "opacity": 0.65},"geometry":{"coordinates":[[-118.183595,33.766866],[-118.182908,33.766866]],"type":"LineString"},"id":"562d6bf397747e8ac37f090852aca042"},{"type":"Feature","properties":{"title":"Lime between 1st and Medio","description":"Wednesday 08:00:00 09:00:00 Tuesday 08:00:00 09:00:00","color": "#A4B5AB", "weight": 10, "opacity": 0.65},"geometry":{"coordinates":[[-118.183686,33.768008],[-118.183692,33.766875]],"type":"LineString"},"id":"6215d40cfebdb08b7d586b1c99e955e9"}]
+var data =[{"type":"Feature","properties":{"title":"Lime between 1st and Broadway","description":"Wednesday 08:00:00 10:00:00 Tuesday 04:00:00 08:00:00","color": "#A4B5AB", "weight": 10, "opacity": 0.65},"geometry":{"coordinates":[[-118.183692,33.769194],[-118.183692,33.768204]],"type":"LineString"},"id":"311861fed7536e66b572cdf8c7fc6e41"},{"type":"Feature","properties":{"title":"Lime between 1st and Medio","description":"Wednesday 08:00:00 10:00:00 Tuesday 08:00:00 10:00:00","color": "#A4B5AB", "weight": 10, "opacity": 0.65},"geometry":{"coordinates":[[-118.183595,33.766866],[-118.182908,33.766866]],"type":"LineString"},"id":"562d6bf397747e8ac37f090852aca042"},{"type":"Feature","properties":{"title":"Lime between 1st and Medio","description":"Wednesday 08:00:00 10:00:00 Tuesday 08:00:00 10:00:00","color": "#A4B5AB", "weight": 10, "opacity": 0.65},"geometry":{"coordinates":[[-118.183686,33.768008],[-118.183692,33.766875]],"type":"LineString"},"id":"6215d40cfebdb08b7d586b1c99e955e9"}]
 
 
 var map = L.map('map').locate({setView: true, maxZoom: 17});
@@ -46,31 +46,35 @@ var map = L.map('map').locate({setView: true, maxZoom: 17});
     maxZoom: 18
 }).addTo(map);
 
-//function onLocationFound(e) {
-//    var radius = e.accuracy / 10;
-//    L.marker(e.latlng).addTo(map);
-//    L.circle(e.latlng, radius).addTo(map);
-//}
-//
-//map.on('locationfound', onLocationFound);
+function onLocationFound(e) {
+    var radius = e.accuracy / 10;
+    L.marker(e.latlng).addTo(map);
+    L.circle(e.latlng, radius).addTo(map);
+}
+
+map.on('locationfound', onLocationFound);
 
 
 //        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',  
     
-    
-    var onEachFeature = function (feature, layer) {
+L.geoJson(data, { 
+    style: function (feature) {
+        return {color: feature.properties.color, weight: feature.properties.weight, opacity: feature.properties.opacity};
+    },
+    onEachFeature: function (feature, layer) {
+//            layer.setStyle({
+//                weight: 10,
+//                color: "#A4B5AB", 
+//                opacity: .8
+//            });
+        
         var zz = feature.properties.description;
         var b = zz.split(" ");
-        
         layer.on('click', function() {
-            
-            bob.setStyle({
-                color: "#A4B5AB", 
+                layer.setStyle({
+                color: "#000000"
             });
-            
-            layer.setStyle({
-                color: "#878E76", 
-            });
+              
             
             var myHTML = feature.properties.title;
             $('#title').val(myHTML);
@@ -84,16 +88,10 @@ var map = L.map('map').locate({setView: true, maxZoom: 17});
                     $(this).removeClass('animated slideInUp');
             });
         })
- };
+ }}).addTo(map);
 
 
-var bob = L.geoJson(data, { 
-    style: function (feature) {
-        return {color: feature.properties.color, weight: feature.properties.weight, opacity: feature.properties.opacity};
-    },
-    onEachFeature: onEachFeature
-}).addTo(map); 
-
+  
 
 </script>
 
