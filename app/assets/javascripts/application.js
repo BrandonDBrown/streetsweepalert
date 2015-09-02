@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ios_splash
 //= require turbolinks
 //= require leaflet
 //= require_tree .
