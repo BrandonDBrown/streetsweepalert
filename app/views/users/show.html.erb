@@ -46,13 +46,13 @@ var map = L.map('map').locate({setView: true, maxZoom: 17});
     maxZoom: 18
 }).addTo(map);
 
-//function onLocationFound(e) {
-//    var radius = e.accuracy / 10;
+function onLocationFound(e) {
+    var radius = e.accuracy / 15;
 //    L.marker(e.latlng).addTo(map);
-//    L.circle(e.latlng, radius).addTo(map);
-//}
-//
-//map.on('locationfound', onLocationFound);
+    L.circle(e.latlng, radius).addTo(map);
+}
+
+map.on('locationfound', onLocationFound);
 
 
 //        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',  
@@ -65,11 +65,13 @@ var map = L.map('map').locate({setView: true, maxZoom: 17});
         layer.on('click', function() {
             
             bob.setStyle({
-                color: "#A4B5AB", 
+                color: "#A4B5AB",
+                weight: 10
             });
             
             layer.setStyle({
-                color: "#878E76", 
+                color: "#4C9F70",
+                weight: 15
             });
             
             var myHTML = feature.properties.title;
