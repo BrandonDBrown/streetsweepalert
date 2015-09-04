@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 // Your Client ID can be retrieved from your project in the Google
       // Developer Console, https://console.developers.google.com
       var CLIENT_ID = '845919965723-jte5403epcbbcagjqojk8325a2jchbnk.apps.googleusercontent.com';
@@ -43,3 +45,4 @@
           handleAuthResult);
         return false;
       }
+});
