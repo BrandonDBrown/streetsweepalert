@@ -1,22 +1,3 @@
-  WebFontConfig = {
-    google: { families: [ 'Josefin+Sans::latin' ] }
-  };
-  (function() {
-    var wf = document.createElement('script');
-    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
-      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-    wf.type = 'text/javascript';
-    wf.async = 'true';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(wf, s);
-  })();
-
-
-
-$(document).ready(function() {
-        
-
-
 var data =[{"type":"Feature","properties":{"title":"Lime between 1st and Broadway","description":"Wednesday 08:00:00 09:00:00 Tuesday 04:00:00 08:00:00","color": "#A4B5AB", "weight": 10, "opacity": 0.65},"geometry":{"coordinates":[[-118.183692,33.769194],[-118.183692,33.768204]],"type":"LineString"},"id":"311861fed7536e66b572cdf8c7fc6e41"},{"type":"Feature","properties":{"title":"Lime between 1st and Medio","description":"Wednesday 08:00:00 09:00:00 Tuesday 08:00:00 09:00:00","color": "#A4B5AB", "weight": 10, "opacity": 0.65},"geometry":{"coordinates":[[-118.183595,33.766866],[-118.182908,33.766866]],"type":"LineString"},"id":"562d6bf397747e8ac37f090852aca042"},{"type":"Feature","properties":{"title":"Lime between 1st and Medio","description":"Wednesday 08:00:00 09:00:00 Tuesday 08:00:00 09:00:00","color": "#A4B5AB", "weight": 10, "opacity": 0.65},"geometry":{"coordinates":[[-118.183686,33.768008],[-118.183692,33.766875]],"type":"LineString"},"id":"6215d40cfebdb08b7d586b1c99e955e9"}]
 
 
@@ -75,4 +56,3 @@ var bob = L.geoJson(data, {
     },
     onEachFeature: onEachFeature
 }).addTo(map);
-});
