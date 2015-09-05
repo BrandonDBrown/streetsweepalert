@@ -37,7 +37,7 @@
                 
                 <li role="presentation"><%= link_to 'My Map', current_user %></li>
                 <li>
-                <%= link_to "Log out", logout_path, method: "delete" %>
+                <%= link_to "Log out", logout_path, method: "delete", id: "disable" %>
               </li>
               <% else %>
             <li role="presentation"><%= link_to 'Home', root_path %></li>
@@ -57,5 +57,6 @@
       <% end %>
 <%= yield %>
     </div>
+    
 </body>
 </html>

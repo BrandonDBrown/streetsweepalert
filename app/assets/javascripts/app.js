@@ -1,3 +1,5 @@
+
+
 var d = new Date();
 var y = d.getYear() + 1900;
 
@@ -32,11 +34,11 @@ function dateOfNext(weekdayNumber) {
        * once client library is loaded.
        */
       function loadCalendarApiR() {
-        gapi.client.load('calendar', 'v3', listUpcomingEventsR);
+        gapi.client.load('calendar', 'v3', rightBtn);
       }
 
       function loadCalendarApiL() {
-        gapi.client.load('calendar', 'v3', listUpcomingEventsL);
+        gapi.client.load('calendar', 'v3', leftBtn);
       }
 
       /**
@@ -44,12 +46,15 @@ function dateOfNext(weekdayNumber) {
        * the authorized user's calendar. If no events are found an
        * appropriate message is printed.
        */
-      function listUpcomingEventsR() {
+     function rightBtn() {
           $('#setTime').hide();
-          $('.setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+ 
+            $('.setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
                     $(this).removeClass('animated slideInUp');
             });
           
+          
+         
           var temp = document.getElementById('description').value.split(" ")
           var nextWednesday = dateOfNext(dayOfWeekAsInteger(temp[0]));
           var movedate = nextWednesday.getDate();
@@ -99,7 +104,7 @@ function dateOfNext(weekdayNumber) {
             });
       };
 
-      function listUpcomingEventsL() {
+      function leftBtn() {
           $('#setTime').hide();
           $('.setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
                     $(this).removeClass('animated slideInUp');

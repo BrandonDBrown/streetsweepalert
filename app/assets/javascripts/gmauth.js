@@ -1,10 +1,10 @@
-$(document).ready(function() {
+
 
 // Your Client ID can be retrieved from your project in the Google
       // Developer Console, https://console.developers.google.com
       var CLIENT_ID = '845919965723-jte5403epcbbcagjqojk8325a2jchbnk.apps.googleusercontent.com';
       var SCOPES = ["https://www.googleapis.com/auth/calendar"];
-
+      
       /**
        * Check if current user has authorized this application.
        */
@@ -30,6 +30,7 @@ $(document).ready(function() {
         } else {
           // Show auth UI, allowing the user to initiate authorization by
           // clicking authorize button.
+            alert('not logged in');
           authorizeDiv.style.display = 'inline';
         }
       }
@@ -45,4 +46,3 @@ $(document).ready(function() {
           handleAuthResult);
         return false;
       }
-});
