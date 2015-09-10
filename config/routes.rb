@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   root 'pages#home'
-  get 'map' => 'pages#map'
+  get '/users/:id/alarms' => 'users#alarms', as: :alarms
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

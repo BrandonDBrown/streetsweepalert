@@ -36,7 +36,8 @@
                 <ul class="nav navbar-nav">
                     <% if logged_in? %>
                 
-                <li role="presentation"><%= link_to 'My Map', current_user %></li>
+                <li role="presentation"><%= link_to '<i class="fa fa-car fa-2x"></i>'.html_safe, current_user %></li>
+                    <li role="presentation"><%= link_to '<i class="fa fa-bell-o fa-2x"></i>'.html_safe, alarms_path(current_user) %></li>
                 <li>
                 <%= link_to "Log out", logout_path, method: "delete", id: "disable" %>
               </li>

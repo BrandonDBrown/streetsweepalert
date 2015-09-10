@@ -52,8 +52,6 @@ function dateOfNext(weekdayNumber) {
             $('.setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
                     $(this).removeClass('animated slideInUp');
             });
-          
-          
          
           var temp = document.getElementById('description').value.split(" ")
           var nextWednesday = dateOfNext(dayOfWeekAsInteger(temp[0]));
@@ -100,7 +98,7 @@ function dateOfNext(weekdayNumber) {
           });
 
             request.execute(function(event) {
-            appendPre('Event created: ' + event.htmlLink);
+           
             });
       };
 
@@ -155,6 +153,72 @@ function dateOfNext(weekdayNumber) {
           });
 
           request.execute(function(event) {
-            appendPre('Event created: ' + event.htmlLink);
+           
           });
+          
         };
+
+
+ function loadCalendarApi() {
+        gapi.client.load('calendar', 'v3', listUpcomingEvents);
+      }
+
+      /**
+       * Print the summary and start datetime/date of the next ten events in
+       * the authorized user's calendar. If no events are found an
+       * appropriate message is printed.
+       */
+
+      function listUpcomingEvents() {
+         var request = gapi.client.calendar.events.list({
+          'calendarId': 'primary',
+          'timeMin': (new Date()).toISOString(),
+          'showDeleted': false,
+          'singleEvents': true,
+          'q': "Move Car"
+        });
+
+        request.execute(function(resp) {
+          var events = resp.items;
+          appendPre('Upcoming events:');
+
+          if (events.length > 0) {
+            for (i = 0; i < events.length; i++) {
+              var event = events[i];
+              var when = event.start.dateTime;
+              if (!when) {
+                when = event.start.date;
+              }
+              appendPre(event.summary +event.id+ ' (' + when + ')')
+            }
+          } else {
+            appendPre('No upcoming events found.');
+          }
+
+        });
+      }
+
+      /**
+       * Append a pre element to the body containing the given message
+       * as its text node.
+       *
+       * @param {string} message Text to be placed in pre element.
+       */
+      function appendPre(message) {
+        var pre = document.getElementById('output');
+        var textContent = document.createTextNode(message + '\n');
+        pre.appendChild(textContent);
+      }
+
+     function deletez() {
+         
+        var requestzy = gapi.client.calendar.events.delete({
+          'calendarId': 'primary',
+          'eventId': '6ia0pd9g75gvmemjjlslijam9c_20150909T150000Z'
+        });
+
+        requestzy.execute(function(resp) {
+        })
+     };
+
+

@@ -260,12 +260,23 @@ aside {
 //    padding-top:0px;
 }
 
-#authorize-div {
+#authorize-div, #testical{
+    margin-top:20px;
     position:absolute;
-    top:30;
+    top:70;
     z-index:100;
 }
 
+pre, .delete {
+    margin-top:20px;
+
+}
+
+#output {
+   font-family: 'Josefin Sans', sans-serif;
+   background-color:white;
+   font-size:18px;
+}
 .splash {
     background-color:#E65F5C;
     height:100%;
@@ -273,26 +284,30 @@ aside {
     position:absolute;
     top:0;
     left:0;
+    margin-right: 0px;
+    margin-left: 0px;
 }
 
 .imagi {
     width:200px;
     position:absolute;
     top:40vh;
-    left:42vw;
+    left:30vw;
+
 }
 
 .logos { 
    font-family: 'Josefin Sans', sans-serif;
     position:absolute;
-    top:60vh;
+    top:65vh;
     width:100%;
     text-align:center;
     color:white;
-    font-size:40px;
+    font-size:6vw;
     font-weight:700;
     
 }
+
 
 
 
