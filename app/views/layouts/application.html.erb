@@ -8,11 +8,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="mobile-web-app-capable" content="yes">
 
-
-     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
   
 </head>
     
@@ -39,7 +37,7 @@
                 <li role="presentation"><%= link_to '<i class="fa fa-car fa-2x"></i>'.html_safe, current_user %></li>
                     <li role="presentation"><%= link_to '<i class="fa fa-bell-o fa-2x"></i>'.html_safe, alarms_path(current_user) %></li>
                 <li>
-                <%= link_to "Log out", logout_path, method: "delete", id: "disable" %>
+                <%= link_to "Log out", logout_path, method: "delete"%>
               </li>
               <% else %>
             <li role="presentation"><%= link_to 'Home', root_path %></li>
