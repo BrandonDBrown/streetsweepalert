@@ -3,7 +3,7 @@ class PagesController < ApplicationController
         if current_user
             redirect_to current_user
         else
-            redirect_to root_path #or whatever
+             #or whatever
         end
   end
 end
