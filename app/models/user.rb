@@ -6,10 +6,10 @@ class User < ActiveRecord::Base
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.name = auth["info"]["name"]
-      user.remember_digest = nil
+#      user.remember_digest = nil
     end
   end
-  has_secure_password
+#  has_secure_password
     # Returns the hash digest of the given string.
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

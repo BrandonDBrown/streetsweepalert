@@ -3,7 +3,20 @@ class SessionsController < ApplicationController
   end
     
   def create
-    auth = request.env["omniauth.auth"] 
+    auth = request.env["omniauth.auth"]
+#    user = User.find_by_provider_and_uid(auth["provider"], auth["uid"])
+#    newUser = User.create_with_omniauth(auth)
+#      if user
+#        log_in user
+#        remember user
+#        redirect_to user
+#      else
+#          newUser
+#          log_in user
+#          remember user
+#          redirect_to user
+#      end
+      
     user = User.find_by_provider_and_uid(auth["provider"], auth["uid"]) || User.create_with_omniauth(auth)
     log_in user
     remember user
