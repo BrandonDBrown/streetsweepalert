@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token
-    has_secure_password
+  has_secure_password
   def self.create_with_omniauth(auth)
     create! do |user|
       user.provider = auth["provider"]
