@@ -6,16 +6,16 @@ class User < ActiveRecord::Base
       user.provider = auth["provider"]
       user.uid = auth["uid"]
       user.name = auth["info"]["name"]
-#      user.remember_digest = nil
     end
   end
+    
 #  has_secure_password
     # Returns the hash digest of the given string.
-  def User.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
-  end
+#  def User.digest(string)
+#    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+#                                                  BCrypt::Engine.cost
+#    BCrypt::Password.create(string, cost: cost)
+#  end
     
     
     # Returns a random token.
@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
     # Remembers a user in the database for use in persistent sessions.
     def remember
         self.remember_token = User.new_token
-        update_attribute(:remember_digest, User.digest(remember_token))
+        update_attribute(:remember_digest, remember_token)
     end
     
     # Returns true if the given token matches the digest.

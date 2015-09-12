@@ -4,8 +4,10 @@ one:
   provider: MyString
   uid: MyString
   name: MyString
+  remember_digest: <%= User.digest('remember_token') %>
 
 two:
   provider: MyString
   uid: MyString
   name: MyString
+  remember_digest: <%= User.digest('remember_token') %>
