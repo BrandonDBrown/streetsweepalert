@@ -4,6 +4,5 @@
 //= require bootstrap
 //= require turbolinks
 //= require leaflet
-//= require gjson
 //= require_tree .
 

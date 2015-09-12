@@ -27,21 +27,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Street Sweep Alert</a>
+                <%= image_tag("truck.png", class:"imagi") %>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <% if logged_in? %>
-                
-                <li role="presentation"><%= link_to '<i class="fa fa-car fa-2x"></i>'.html_safe, current_user %></li>
-                    <li role="presentation"><%= link_to '<i class="fa fa-bell-o fa-2x"></i>'.html_safe, alarms_path(current_user) %></li>
                 <li>
                 <%= link_to "Log out", logout_path, method: "delete"%>
               </li>
               <% else %>
-            <li role="presentation"><%= link_to 'Home', root_path %></li>
-              
               <li><%= link_to "Log in with Gmail", "/auth/google_oauth2" %></li>
               <% end %>
                 </ul>
@@ -55,11 +50,9 @@
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
-<%= yield %>
-        
+<%= yield %>  
 
     </div>
-    <script src="https://apis.google.com/js/client.js?onload=checkAuth">
-</script>
+
 </body>
 </html>
