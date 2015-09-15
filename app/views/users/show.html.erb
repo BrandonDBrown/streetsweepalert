@@ -1,32 +1,37 @@
 <% provide(:title, @user.name) %>
+<!--MAP-->
 <div class="row">
     <div class ="map">
         <div id="map" class = "col-md-12"></div>
     </div>
 </div>
-<!--<input id="testical"></input>-->
-<input id="title" type="text" style="display:none;"/><br/>
-<input id="description" type="text" style="display:none;"/><br/>
 
-<div class="row">
+
+<!--HIDDEN INPUT. USES DATA FROM GEOJSON CREATE GOOGLE EVENT-->
+<input id="title" type="text" style="display:none;"/>
+<input id="description" type="text" style="display:none;"/>
+
+
+<div class="row ribbons">
+    <!--DIRECTIONS INTRO RIBBON-->
+    <div class= "col-md-12 intro">
+        <i class="fa fa-road fa-inverse fa-lg"></i> Click a street.
+        <i class='fa fa-bell-o fa-lg'></i> Set a reminder.
+    </div>
+    
+    <!--SET ALARM OPTIONS-->
     <div class= "col-md-12" id="setTime">
         <button class="btn setAlert" id="setTime1" onclick="loadCalendarApiL()"></button><button class="btn setAlert" id="setTime2" onclick="loadCalendarApiR()"></button>
     </div>
-</div>
-
-<div class="row">
+    
+    <!--CONFIRMATION OF GOOGLE EVENT CREATION RIBBON-->
     <div class= "col-md-12 setTime">
         <i class= "fa fa-calendar fa-lg"></i> Google reminder set.
     </div>
 </div>
 
-<div class="row">
-    <div class= "col-md-12 intro">
-        <i class="fa fa-road fa-inverse fa-lg"></i> Click a street.
-        <i class='fa fa-bell-o fa-lg'></i> Set a reminder.
-    </div>
-</div>
 
+<!--GOOGLE API AUTHORIZATION-->
 <div id="authorize-div" style="display: none">
     <span>Authorize access to Google Calendar API</span>
 <!--    Button for the user to click to initiate auth sequence -->
@@ -35,8 +40,7 @@
     </button>
 </div>
 
-    <script src="https://apis.google.com/js/client.js?onload=checkAuth">
-    </script>
+<script src="https://apis.google.com/js/client.js?onload=checkAuth"></script>
 
 
 
