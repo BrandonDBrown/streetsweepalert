@@ -46,8 +46,7 @@ map.on('locationfound', onLocationFound);
             
             $('#setTime1').html("<i class='fa fa-bell-o fa-lg'></i> " + b[3].substring(0,3).toUpperCase()+ " " +b[4].slice(0, -6) + "am")
             $('#setTime2').html("<i class='fa fa-bell-o fa-lg'></i> "+b[0].substring(0,3).toUpperCase()+ " " + b[1].slice(0, -6) + "am")
-            $('.setTime').hide();
-            $('.intro').hide();
+            $('.setTime, .intro').hide();
             $('#setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
                     $(this).removeClass('animated slideInUp');
             });
@@ -120,8 +119,6 @@ function dateOfNext(weekdayNumber) {
     return addDays(lastSunday, daysToAdd);
 }
 
-
-
 /**
        * Load Google Calendar client library. List upcoming events
        * once client library is loaded.
@@ -141,11 +138,11 @@ function dateOfNext(weekdayNumber) {
        */
      function rightBtn() {
 
-         
           $('#setTime').hide();
           $('.setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
                     $(this).removeClass('animated slideInUp');
             });
+         
           var temp = document.getElementById('description').value.split(" ")
           var nextWednesday = dateOfNext(dayOfWeekAsInteger(temp[0]));
           var movedate = nextWednesday.getDate();
@@ -275,33 +272,3 @@ function dateOfNext(weekdayNumber) {
       };
           
         };
-
-
-// function loadCalendarApi() {
-//        gapi.client.load('calendar', 'v3', listUpcomingEvents);
-//      }
-
-      /**
-       * Print the summary and start datetime/date of the next ten events in
-       * the authorized user's calendar. If no events are found an
-       * appropriate message is printed.
-       */
-
-
-
-      /**
-       * Append a pre element to the body containing the given message
-       * as its text node.
-       *
-       * @param {string} message Text to be placed in pre element.
-       */
-//      function appendPre(message) {
-//        var pre = document.getElementById('output');
-//        var textContent = document.createTextNode(message + '\n');
-//        pre.appendChild(textContent);
-//      }
-
-
-    
-
-

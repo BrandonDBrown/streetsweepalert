@@ -144,7 +144,6 @@ ul {
         background-color:#E65F5C;
         border-color:#E65F5C;
     }
-
     .btn:hover {
         background-color:#c91d1a;
         border-color:#c91d1a;
@@ -162,7 +161,7 @@ ul {
           outline:0;
           color:white;
         }
-
+    
     .col-md-12 {
         padding-left:0px;
         padding-right:0px;
@@ -181,34 +180,80 @@ ul {
     margin-top:50px;
 }
 
-
-.splash {
-    background-color:#E65F5C;
-    height:100%;
-    width:100%;
-    position:absolute;
-    top:0;
-    left:0;
-    margin-right: 0px;
-    margin-left: 0px;
-}
-
-.imagi {
+.logo {
     width:63px;
     margin-top:5px;
     margin-left:15px;
 }
 
-.logos { 
-   font-family: 'Josefin Sans', sans-serif;
-    position:absolute;
-    top:65vh;
-    width:100%;
-    text-align:center;
-    color:white;
-    font-size:6vw;
-    font-weight:700; 
+.home {
+    .splash {
+        background-color:#c91d1a;
+        height:100%;
+        width:100%;
+        position:absolute;
+        top:0;
+        left:0;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .box {
+        margin-top: 18vh;
+    }
+
+    .login {
+        color:white;
+        width:100%;
+        font-size:4vw;
+        background-color:#E65F5C;
+        border:none;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    .logos { 
+        font-family: 'Josefin Sans', sans-serif;
+        width:100%;
+        text-align:center;
+        color:white;
+        font-size:4vw;
+        font-weight:700;
+        margin-bottom:20px;
+    }
+
+    .truck {
+        width: 100%;
+        margin-bottom:20px;
+    }
+    
+    .btn:hover {
+        background-color:#e5706e;
+        border-color:#e5706e;
+    }
+
+    .btn:focus{
+        background-color:#e5706e;
+        outline: none;
+        border-radius:0;  
+        color:white;
+    }
+
+      .btn:active {
+          background-color: #e5706e;
+          outline:0;
+          color:white;
+        }
+    
+  @media (max-width:700px) {
+    .box {
+        margin-top: 35vh;
+    }
+    .logos {
+        font-size:5vw;
+    }
+  }
 }
+    
 
 
 
