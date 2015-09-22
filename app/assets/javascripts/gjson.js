@@ -31,12 +31,12 @@ map.on('locationfound', onLocationFound);
             
             resetStyle.setStyle({
                 color: "#A4B5AB",
-                weight: 10
+                weight: 15
             });
             
             layer.setStyle({
                 color: "#4C9F70",
-                weight: 15
+                weight: 20
             });
             
             var location =[feature.properties.description, feature.properties.title]
@@ -55,7 +55,7 @@ map.on('locationfound', onLocationFound);
 
 var resetStyle = L.geoJson(data, { 
     style: function (feature) {
-        return {color: feature.properties['stroke'], weight:10, opacity: feature.properties['stroke-opacity']};
+        return {color: feature.properties['stroke'], weight:15, opacity: feature.properties['stroke-opacity']};
     },
     onEachFeature: onEachFeature
 }).addTo(map);

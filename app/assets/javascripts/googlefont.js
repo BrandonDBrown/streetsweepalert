@@ -1,6 +1,6 @@
 //GOOGLE FONT CODE  
-WebFontConfig = {
-    google: { families: [ 'Josefin+Sans::latin' ] }
+  WebFontConfig = {
+    google: { families: [ 'Josefin+Sans:400,700:latin' ] }
   };
   (function() {
     var wf = document.createElement('script');

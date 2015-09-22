@@ -1,7 +1,7 @@
 module ApplicationHelper
     
     def full_title(page_title = ' ')
-        base_title = "StreetSweepAlert"
+        base_title = "SweepAlert"
             if page_title.empty?
                 base_title
             else

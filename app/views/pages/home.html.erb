@@ -1,10 +1,27 @@
+<div class="bg"></div>
 <div class="row splash">
-    <div class="col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3 box">
-    <%= image_tag 'truck.png', class:'truck' %>
-    <div class="logos">Street Sweep Alert</div>
+    <div class="col-md-4 col-md-offset-4 col-xs-12 box">
+    <div class="logos">Sweep Alert</div>
+        
+    <div class="logos tagline">Avoid street sweeping tickets.</div>
+        
     <%= button_to "Log in with Gmail", "/auth/google_oauth2",class:"btn btn-primary btn-xl login" %>
     </div>
 </div>
+
+<div class="row ribbons height">
+    <div class= "col-md-12 banner">
+        <i class="fa fa-arrow-down fa-inverse animated bounce"></i>
+        Add to homescreen
+        <i class="fa fa-arrow-down fa-inverse animated bounce"></i>
+    </div>
+</div>
+
+<script>
+if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) {
+    $('.banner').show()
+}
+    </script>
 
 
 
