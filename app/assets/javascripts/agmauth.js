@@ -16,6 +16,11 @@
           }, loadCalendarApi);
       }
 
+$(document).ready(function() {
+    if ('standalone' in navigator && !navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform) && (/Safari/i).test(navigator.appVersion)) {
+    $('.banner').show()
+}
+});
       /**
        * Handle response from authorization server.
        *
