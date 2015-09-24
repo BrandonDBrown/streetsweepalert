@@ -241,6 +241,9 @@ ul {
     .btn:hover {
         background-color:#c91d1a;
         border-color:#c91d1a;
+        -webkit-box-shadow: 0px 1px 1px 0px rgba(92,100,107,1);
+        -moz-box-shadow: 0px 1px 1px 0px rgba(92,100,107,1);
+        box-shadow: 0px 1px 1px 0px rgba(92,100,107,1);
     }
 
     .btn:focus{
@@ -248,6 +251,9 @@ ul {
         outline: none;
         border-radius:0;  
         color:white;
+        -webkit-box-shadow: 0px 1px 1px 0px rgba(92,100,107,1);
+        -moz-box-shadow: 0px 1px 1px 0px rgba(92,100,107,1);
+        box-shadow: 0px 1px 1px 0px rgba(92,100,107,1);
     }
 
       .btn:active {
