@@ -13,7 +13,7 @@ var map = L.map('map').locate({setView: true, maxZoom: 17});
  L.control.locate({
     remainActive: true, // if true locate control remains active on click even if the user's location is in view.
     icon: 'fa fa-location-arrow', // class for icon, fa-location-arrow or fa-map-marker
-    follow: false,
+    follow: true,
     stopFollowingOnDrag: false, // stop following when the map is dragged if `follow` is true (deprecated, see below)
     locateOptions: {maxZoom: 17}
 }).addTo(map);
