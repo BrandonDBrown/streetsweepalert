@@ -11,29 +11,16 @@ var map = L.map('map').locate({setView: true, maxZoom: 17});
 }).addTo(map);
     
  L.control.locate({
-    position: 'topleft',  // set the location of the control
-    drawCircle: true,  // controls whether a circle is drawn that shows the uncertainty about the location
-    follow: false,  // follow the user's location
-    stopFollowingOnDrag: false, // stop following when the map is dragged if `follow` is true (deprecated, see below)
     remainActive: true, // if true locate control remains active on click even if the user's location is in view.
-    followCircleStyle: {},  // set difference for the style of the circle around the user's location while following
-    followMarkerStyle: {},
     icon: 'fa fa-location-arrow',  // class for icon, fa-location-arrow or fa-map-marker
-    iconLoading: 'fa fa-spinner fa-spin',  // class for loading icon
-    circlePadding: [0, 0], // padding around accuracy circle, value is passed to setBounds
-    metric: true,
-    locateOptions: {maxZoom: 17}// use metric or imperial units
+    locateOptions: {maxZoom: 17}
 }).addTo(map);
-//map.on('locationfound', function(e) {
-//    L.circle(e.latlng, 3).addTo(map);
-//});
 
 //        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',  
     
 //function for each street click    
     var onEachFeature = function (feature, layer) {
-        var zz = feature.properties.description;
-        var b = zz.split(" ");
+        var b = feature.properties.description.split(" ");
         
         layer.on('click', function() {
             
@@ -69,8 +56,7 @@ var resetStyle = L.geoJson(data, {
             opacity: feature.properties['stroke-opacity']};
     },
     onEachFeature: onEachFeature
-    }).addTo(map);
-    
+    }).addTo(map);  
 });
 
 //BEGINNING OF SET EVENT BUTTONS JAVASCRIPT
@@ -79,6 +65,7 @@ var d = new Date();
 var y = d.getYear() + 1900;
 var calevent = 0;
 var eventzId;
+
 
 function loadCalendarApi() {
         gapi.client.load('calendar', 'v3', listUpcomingEvents);
@@ -139,6 +126,7 @@ function dateOfNext(weekdayNumber) {
         gapi.client.load('calendar', 'v3', leftBtn);
       }
 
+//RIGHT BUTTON THE LATER DATE
      function rightBtn() {
           $('#setTime').hide();
           $('.setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
@@ -149,22 +137,14 @@ function dateOfNext(weekdayNumber) {
           var nextWednesday = dateOfNext(dayOfWeekAsInteger(temp[0]));
           var movedate = nextWednesday.getDate();
           var movemonth = nextWednesday.getMonth() + 1;
-          if(movedate < 10) {
-              var movedates = '0' + movedate;
-          } else {
-              var movedates = movedate;
-          }
-          if(movemonth < 10) {
-              var movemonths = '0' + movemonth;
-          } else {
-              var movemonths = movemonth;
-          }
           
-
+         var movedates = ((movedate < 10) ? '0' + movedate : movedate); 
+         var movemonths = ((movemonth < 10) ? '0' + movemonth : movemonth);
+         var title = document.getElementById('title').value
           var eventz = {
-            'summary': 'Move Car ' + document.getElementById('title').value ,
-            'location': document.getElementById('title').value,
-            'description': document.getElementById('title').value,
+            'summary': 'Move Car ' + title ,
+            'location': title,
+            'description': title,
             'start': {
                 'dateTime': y + '-' + movemonths + '-' + movedates + 'T' + temp[1] +'-07:00',
                 'timeZone': 'America/Los_Angeles'
@@ -207,6 +187,7 @@ function dateOfNext(weekdayNumber) {
       };
     };
 
+//LEFT BUTTON THE EARLIER DATE
       function leftBtn() {
           $('#setTime').hide();
           $('.setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
@@ -217,21 +198,14 @@ function dateOfNext(weekdayNumber) {
           var nextWednesday = dateOfNext(dayOfWeekAsInteger(temp[3]));
           var movedate = nextWednesday.getDate();
           var movemonth = nextWednesday.getMonth() + 1;
-          if(movedate < 10) {
-              var movedates = '0' + movedate;
-          } else {
-              var movedates = movedate;
-          }
-          if(movemonth < 10) {
-              var movemonths = '0' + movemonth;
-          } else {
-              var movemonths = movemonth;
-          }
-          
+
+          var movedates = ((movedate < 10) ? '0' + movedate : movedate); 
+          var movemonths = ((movemonth < 10) ? '0' + movemonth : movemonth);
+          var title = document.getElementById('title').value
           var eventz = {
-            'summary': 'Move Car ' + document.getElementById('title').value,
-            'location': document.getElementById('title').value,
-            'description': document.getElementById('title').value,
+            'summary': 'Move Car ' + title,
+            'location': title,
+            'description': title,
             'start': {
                 'dateTime': y + '-' + movemonths + '-' +movedates+'T' + temp[4] +'-07:00',
                 'timeZone': 'America/Los_Angeles'
