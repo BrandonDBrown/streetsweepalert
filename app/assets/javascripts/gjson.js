@@ -12,6 +12,7 @@ var map = L.map('map').locate({setView: true, maxZoom: 17});
     
  L.control.locate({
     remainActive: true, // if true locate control remains active on click even if the user's location is in view.
+    drawCircle: false,
     icon: 'fa fa-location-arrow', // class for icon, fa-location-arrow or fa-map-marker
     locateOptions: {maxZoom: 17}
 }).addTo(map);
