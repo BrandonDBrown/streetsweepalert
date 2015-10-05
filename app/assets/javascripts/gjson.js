@@ -58,8 +58,17 @@ var resetStyle = L.geoJson(data, {
     },
     onEachFeature: onEachFeature
     }).addTo(map);  
-});
 
+/* Load Google Calendar client library. For the set calendar event buttons */
+$('#setTime2').click(function() {
+    gapi.client.load('calendar', 'v3', rightBtn);
+}) 
+
+$('#setTime1').click(function() {
+        gapi.client.load('calendar', 'v3', leftBtn);
+});
+    
+});
 //BEGINNING OF SET EVENT BUTTONS JAVASCRIPT
 
 var d = new Date();
@@ -118,16 +127,7 @@ function dateOfNext(weekdayNumber) {
     return addDays(lastSunday, daysToAdd);
 }
 
-/* Load Google Calendar client library. */
-      function loadCalendarApiR() {
-        gapi.client.load('calendar', 'v3', rightBtn);
-      }
-
-      function loadCalendarApiL() {
-        gapi.client.load('calendar', 'v3', leftBtn);
-      }
-
-//RIGHT BUTTON THE LATER DATE
+//RIGHT BUTTON/THE LATER DATE
      function rightBtn() {
           $('#setTime').hide();
           $('.setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
@@ -188,7 +188,7 @@ function dateOfNext(weekdayNumber) {
       };
     };
 
-//LEFT BUTTON THE EARLIER DATE
+//LEFT BUTTON/THE EARLIER DATE
       function leftBtn() {
           $('#setTime').hide();
           $('.setTime').addClass('animated slideInUp').show().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
@@ -249,3 +249,4 @@ function dateOfNext(weekdayNumber) {
       };
           
         };
+    
