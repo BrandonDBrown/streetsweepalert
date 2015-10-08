@@ -152,8 +152,8 @@ ul {
         border-color:#E65F5C;
     }
 
-      .btn:active, .btn:focus {
-          background-color: #E65F5C;
+    .btn:active, .btn:focus {
+          background-color: #c91d1a;
           outline:0;
           color:white;
       }
@@ -163,12 +163,12 @@ ul {
         padding-right:0px;
     }
 
-    #authorize-div{
-        margin-top:20px;
-        position:absolute;
-        top:70;
-        z-index:100;
-    }
+//    #authorize-div{
+//        margin-top:20px;
+//        position:absolute;
+//        top:70;
+//        z-index:100;
+//    }
 }
 
 #output {

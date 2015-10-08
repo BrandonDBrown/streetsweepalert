@@ -27,36 +27,7 @@ L.control.locate({
 //        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',  
 
 var location;        
-//function for each street click    
-var onEachFeature = function(feature, layer) {
-    var b = feature.properties.description.split(" ");
-    layer.on('click', function() {
-        resetStyle.setStyle({
-            color: "#A4B5AB",
-            weight: 15
-        });
-        layer.setStyle({
-            color: "#4C9F70",
-            weight: 20
-        });
-        location = [feature.properties.description, feature.properties
-            .title]
-//        $('#title').val(location[1]);
-//        $('#description').val(location[0]);
-        $('#setTime1').html("<i class='fa fa-bell-o fa-lg'></i> " +
-            b[3].substring(0, 3).toUpperCase() + " " + b[4].slice(
-                0, -6) + "am")
-        $('#setTime2').html("<i class='fa fa-bell-o fa-lg'></i> " +
-            b[0].substring(0, 3).toUpperCase() + " " + b[1].slice(
-                0, -6) + "am")
-        $('.setTime, .intro').hide();
-        $('#setTime').addClass('animated slideInUp').show().one(
-            'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
-            function() {
-                $(this).removeClass('animated slideInUp');
-            });
-    })
-};
+//Load geoJSON and the function for each street click    
 
 var resetStyle = L.geoJson(data, {
     style: function(feature) {
@@ -66,15 +37,45 @@ var resetStyle = L.geoJson(data, {
             opacity: feature.properties['stroke-opacity']
         };
     },
-    onEachFeature: onEachFeature
+    onEachFeature: 
+        function(feature, layer) {
+            var b = feature.properties.description.split(" ");
+            layer.on('click', function() {
+                resetStyle.setStyle({
+                    color: "#A4B5AB",
+                    weight: 15
+                });
+                layer.setStyle({
+                    color: "#4C9F70",
+                    weight: 20
+                });
+                location = [feature.properties.description, feature.properties
+                    .title]
+                $('#setTime1').html("<i class='fa fa-bell-o fa-lg'></i> " +
+                    b[3].substring(0, 3).toUpperCase() + " " + b[4].slice(
+                        0, -6) + "am")
+                $('#setTime2').html("<i class='fa fa-bell-o fa-lg'></i> " +
+                    b[0].substring(0, 3).toUpperCase() + " " + b[1].slice(
+                        0, -6) + "am")
+                $('.setTime, .intro').hide();
+                $('#setTime').addClass('animated slideInUp').show().one(
+                    'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+                    function() {
+                        $(this).removeClass('animated slideInUp');
+                    });
+            })
+      }
 }).addTo(map);
 
+
 /* Load Google Calendar client library. For the set calendar event buttons */
-$('#setTime2').click(function() {
+//$('#setTime2').click(function() {
+Hammer(setTime2).on("tap", function() {
     gapi.client.load('calendar', 'v3', rightBtn);
 })
-$('#setTime1').click(function() {
-gapi.client.load('calendar', 'v3', leftBtn);
+//$('#setTime1').click(function() {
+Hammer(setTime1).on("tap", function() {
+    gapi.client.load('calendar', 'v3', leftBtn);
 });
  
 //RIGHT BUTTON/THE LATER DATE
@@ -86,6 +87,7 @@ function rightBtn() {
         function() {
             $(this).removeClass('animated slideInUp');
         });
+    
     var temp = location[0].split(" ")
     
     var nextWednesday = dateOfNext(dayOfWeekAsInteger(temp[0]));
@@ -260,6 +262,8 @@ function dateOfNext(weekdayNumber) {
         }
         return addDays(lastSunday, daysToAdd);
     }
+
+
 
 
     
