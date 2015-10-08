@@ -26,7 +26,7 @@ L.control.locate({
             
 //        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',  
 
-var location;        
+var location = new Array(2);
 //Load geoJSON and the function for each street click    
 
 var resetStyle = L.geoJson(data, {
@@ -68,146 +68,146 @@ var resetStyle = L.geoJson(data, {
 }).addTo(map);
 
 
-/* Load Google Calendar client library. For the set calendar event buttons */
-//$('#setTime2').click(function() {
-Hammer(setTime2).on("tap", function() {
-    gapi.client.load('calendar', 'v3', rightBtn);
-})
-//$('#setTime1').click(function() {
-Hammer(setTime1).on("tap", function() {
-    gapi.client.load('calendar', 'v3', leftBtn);
+    /* Load Google Calendar client library. For the set calendar event buttons */
+    $('#setTime2').click(function() {
+        gapi.client.load('calendar', 'v3', rightBtn);
+    });
+    $('#setTime1').click(function() {
+        gapi.client.load('calendar', 'v3', leftBtn);
+    });
+
+
+    //RIGHT BUTTON/THE LATER DATE
+
+    function rightBtn() {
+        $('#setTime').hide();
+        $('.setTime').addClass('animated slideInUp').show().one(
+            'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            function() {
+                $(this).removeClass('animated slideInUp');
+            });
+
+        var temp = location[0].split(" ")
+
+        var nextWednesday = dateOfNext(dayOfWeekAsInteger(temp[0]));
+        var movedate = nextWednesday.getDate();
+        var movemonth = nextWednesday.getMonth() + 1;
+        var movedates = ((movedate < 10) ? '0' + movedate : movedate);
+        var movemonths = ((movemonth < 10) ? '0' + movemonth : movemonth);
+
+        var title = location[1];
+
+        var eventz = {
+            'summary': 'Move Car ' + title,
+            'location': title,
+            'description': title,
+            'start': {
+                'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
+                    temp[1] + '-07:00',
+                'timeZone': 'America/Los_Angeles'
+            },
+            'end': {
+                'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
+                    temp[2] + '-07:00',
+                'timeZone': 'America/Los_Angeles'
+            },
+            'recurrence': ['RRULE:FREQ=DAILY;COUNT=1'],
+            'reminders': {
+                'useDefault': false,
+                'overrides': [{
+                    'method': 'popup',
+                    'minutes': 60
+                }, {
+                    'method': 'popup',
+                    'minutes': 10
+                }]
+            }
+        };
+        if (calevent == 1) {
+            var requestzy = gapi.client.calendar.events.delete({
+                'calendarId': 'primary',
+                'eventId': eventzId
+            });
+            requestzy.execute();
+            var request = gapi.client.calendar.events.insert({
+                'calendarId': 'primary',
+                'resource': eventz
+            });
+            request.execute();
+        } else {
+            var request = gapi.client.calendar.events.insert({
+                'calendarId': 'primary',
+                'resource': eventz
+            });
+            request.execute();
+        };
+    };
+
+    //LEFT BUTTON/THE EARLIER DATE
+    function leftBtn() {
+        $('#setTime').hide();
+        $('.setTime').addClass('animated slideInUp').show().one(
+            'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+            function() {
+                $(this).removeClass('animated slideInUp');
+            });
+        var temp = location[0].split(" ")
+
+        var nextWednesday = dateOfNext(dayOfWeekAsInteger(temp[3]));
+        var movedate = nextWednesday.getDate();
+        var movemonth = nextWednesday.getMonth() + 1;
+        var movedates = ((movedate < 10) ? '0' + movedate : movedate);
+        var movemonths = ((movemonth < 10) ? '0' + movemonth : movemonth);
+
+        var title = location[1];
+        var eventz = {
+            'summary': 'Move Car ' + title,
+            'location': title,
+            'description': title,
+            'start': {
+                'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
+                    temp[4] + '-07:00',
+                'timeZone': 'America/Los_Angeles'
+            },
+            'end': {
+                'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
+                    temp[5] + '-07:00',
+                'timeZone': 'America/Los_Angeles'
+            },
+            'recurrence': ['RRULE:FREQ=DAILY;COUNT=1'],
+            'reminders': {
+                'useDefault': false,
+                'overrides': [{
+                    'method': 'popup',
+                    'minutes': 60
+                }, {
+                    'method': 'popup',
+                    'minutes': 10
+                }]
+            }
+        };
+        if (calevent == 1) {
+            var requestzy = gapi.client.calendar.events.delete({
+                'calendarId': 'primary',
+                'eventId': eventzId
+            });
+            requestzy.execute();
+            var request = gapi.client.calendar.events.insert({
+                'calendarId': 'primary',
+                'resource': eventz
+            });
+            request.execute();
+        } else {
+            var request = gapi.client.calendar.events.insert({
+                'calendarId': 'primary',
+                'resource': eventz
+            });
+            request.execute();
+        };
+    };
+
 });
- 
-//RIGHT BUTTON/THE LATER DATE
 
-function rightBtn() {
-    $('#setTime').hide();
-    $('.setTime').addClass('animated slideInUp').show().one(
-        'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
-        function() {
-            $(this).removeClass('animated slideInUp');
-        });
-    
-    var temp = location[0].split(" ")
-    
-    var nextWednesday = dateOfNext(dayOfWeekAsInteger(temp[0]));
-    var movedate = nextWednesday.getDate();
-    var movemonth = nextWednesday.getMonth() + 1;
-    var movedates = ((movedate < 10) ? '0' + movedate : movedate);
-    var movemonths = ((movemonth < 10) ? '0' + movemonth : movemonth);
-    
-    var title = location[1];
-    
-    var eventz = {
-        'summary': 'Move Car ' + title,
-        'location': title,
-        'description': title,
-        'start': {
-            'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
-                temp[1] + '-07:00',
-            'timeZone': 'America/Los_Angeles'
-        },
-        'end': {
-            'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
-                temp[2] + '-07:00',
-            'timeZone': 'America/Los_Angeles'
-        },
-        'recurrence': ['RRULE:FREQ=DAILY;COUNT=1'],
-        'reminders': {
-            'useDefault': false,
-            'overrides': [{
-                'method': 'popup',
-                'minutes': 60
-            }, {
-                'method': 'popup',
-                'minutes': 10
-            }]
-        }
-    };
-    if (calevent == 1) {
-        var requestzy = gapi.client.calendar.events.delete({
-            'calendarId': 'primary',
-            'eventId': eventzId
-        });
-        requestzy.execute();
-        var request = gapi.client.calendar.events.insert({
-            'calendarId': 'primary',
-            'resource': eventz
-        });
-        request.execute();
-    } else {
-        var request = gapi.client.calendar.events.insert({
-            'calendarId': 'primary',
-            'resource': eventz
-        });
-        request.execute();
-    };
-};
-
-//LEFT BUTTON/THE EARLIER DATE
-function leftBtn() {
-    $('#setTime').hide();
-    $('.setTime').addClass('animated slideInUp').show().one(
-        'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
-        function() {
-            $(this).removeClass('animated slideInUp');
-        });
-    var temp = location[0].split(" ")
-    
-    var nextWednesday = dateOfNext(dayOfWeekAsInteger(temp[3]));
-    var movedate = nextWednesday.getDate();
-    var movemonth = nextWednesday.getMonth() + 1;
-    var movedates = ((movedate < 10) ? '0' + movedate : movedate);
-    var movemonths = ((movemonth < 10) ? '0' + movemonth : movemonth);
-    
-    var title = location[1];
-    var eventz = {
-        'summary': 'Move Car ' + title,
-        'location': title,
-        'description': title,
-        'start': {
-            'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
-                temp[4] + '-07:00',
-            'timeZone': 'America/Los_Angeles'
-        },
-        'end': {
-            'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
-                temp[5] + '-07:00',
-            'timeZone': 'America/Los_Angeles'
-        },
-        'recurrence': ['RRULE:FREQ=DAILY;COUNT=1'],
-        'reminders': {
-            'useDefault': false,
-            'overrides': [{
-                'method': 'popup',
-                'minutes': 60
-            }, {
-                'method': 'popup',
-                'minutes': 10
-            }]
-        }
-    };
-    if (calevent == 1) {
-        var requestzy = gapi.client.calendar.events.delete({
-            'calendarId': 'primary',
-            'eventId': eventzId
-        });
-        requestzy.execute();
-        var request = gapi.client.calendar.events.insert({
-            'calendarId': 'primary',
-            'resource': eventz
-        });
-        request.execute();
-    } else {
-        var request = gapi.client.calendar.events.insert({
-            'calendarId': 'primary',
-            'resource': eventz
-        });
-        request.execute();
-    };
-};
-
-});
 
 //BEGINNING OF SET EVENT BUTTONS JAVASCRIPT
 
@@ -215,6 +215,8 @@ var d = new Date();
 var y = d.getYear() + 1900;
 var calevent = 0;
 var eventzId;
+
+
 
 function loadCalendarApi() {
     gapi.client.load('calendar', 'v3', listUpcomingEvents);
@@ -261,9 +263,4 @@ function dateOfNext(weekdayNumber) {
             daysToAdd = daysToAdd + 7;
         }
         return addDays(lastSunday, daysToAdd);
-    }
-
-
-
-
-    
+}
