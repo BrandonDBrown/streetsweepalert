@@ -1,4 +1,4 @@
-$(document).on('page:change', function () {
+$(document).on('ready', function () {
 
 //MAPBOX MAP GENERATION WITH GEOJSON AND STREET CLICK ACTIONS 
 
