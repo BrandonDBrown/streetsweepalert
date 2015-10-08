@@ -117,7 +117,6 @@ ul {
     }
 
     
-    
     #setTime {
         display:none;
         text-decoration:bold;
@@ -148,23 +147,17 @@ ul {
         border-color:#E65F5C;
     }
 
-        .btn:hover {
-        background-color:#c91d1a;
-        border-color:#c91d1a;
+    .btn:hover {
+        background-color:#E65F5C;
+        border-color:#E65F5C;
     }
 
-    .btn:focus{
-        background-color:#c91d1a;
-        outline: none;
-        border-radius:0;  
-        color:white;
-    }
-
-      .btn:active {
+      .btn:active, .btn:focus {
           background-color: #c91d1a;
           outline:0;
           color:white;
-        }
+      }
+    
     .col-md-12 {
         padding-left:0px;
         padding-right:0px;
