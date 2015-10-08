@@ -26,7 +26,7 @@ L.control.locate({
             
 //        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',  
 
-var location = new Array(2);
+var location = [];
 //Load geoJSON and the function for each street click    
 
 var resetStyle = L.geoJson(data, {
