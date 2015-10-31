@@ -16,7 +16,7 @@ var controls = L.control.locate({
 var location = [];
 //Load geoJSON and the function for each street click    
 
-$.getJSON('/data.geojson', function(data) {
+$.getJSON('/data1.geojson', function(data) {
     var resetStyle = L.geoJson(data, {
         style: function(feature) {
             return {
@@ -39,11 +39,11 @@ $.getJSON('/data.geojson', function(data) {
                     });
                     location = [feature.properties.description, feature.properties.title]
                     $('#setTime1').html("<i class='fa fa-bell-o fa-lg'></i> " +
-                        b[3].substring(0, 3).toUpperCase() + " " + b[4].slice(
-                            0, -6) + "am")
+                        b[4].substring(0, 3).toUpperCase() + " " + b[5].slice(
+                            0, -6) + b[6])
                     $('#setTime2').html("<i class='fa fa-bell-o fa-lg'></i> " +
                         b[0].substring(0, 3).toUpperCase() + " " + b[1].slice(
-                            0, -6) + "am")
+                            0, -6) + b[2])
                     $('.setTime, .intro').hide();
                     $('#setTime').addClass('animated slideInUp').show().one(
                         'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
@@ -74,7 +74,6 @@ $.getJSON('/data.geojson', function(data) {
     });
     
     //RIGHT BUTTON/THE LATER DATE
-
     function rightBtn() {
         $('#setTime').hide();
         $('.setTime').addClass('animated slideInUp').show().one(
