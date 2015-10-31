@@ -28,7 +28,7 @@ $.getJSON('/data1.geojson', function(data) {
         onEachFeature: 
             function(feature, layer) {
                 var b = feature.properties.description.split(" ");
-                layer.on('click', function() {
+                layer.on('click', function(e) {
                     resetStyle.setStyle({
                         color: "#A4B5AB",
                         weight: 15
@@ -37,13 +37,15 @@ $.getJSON('/data1.geojson', function(data) {
                         color: "#4C9F70",
                         weight: 20
                     });
+                    layer.bringToFront();
                     location = [feature.properties.description, feature.properties.title]
+                    
                     $('#setTime1').html("<i class='fa fa-bell-o fa-lg'></i> " +
-                        b[4].substring(0, 3).toUpperCase() + " " + b[5].slice(
-                            0, -6) + b[6])
+                        b[4].substring(0, 3).toUpperCase() + " " + ((parseInt(b[5].slice(
+                            0, -6))+11) % 12 +1) + b[6])
                     $('#setTime2').html("<i class='fa fa-bell-o fa-lg'></i> " +
-                        b[0].substring(0, 3).toUpperCase() + " " + b[1].slice(
-                            0, -6) + b[2])
+                        b[0].substring(0, 3).toUpperCase() + " " + ((parseInt(b[1].slice(
+                            0, -6))+11) % 12 +1) + b[2])
                     $('.setTime, .intro').hide();
                     $('#setTime').addClass('animated slideInUp').show().one(
                         'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
@@ -91,7 +93,7 @@ $.getJSON('/data1.geojson', function(data) {
         var movemonths = ((movemonth < 10) ? '0' + movemonth : movemonth);
 
         var title = location[1];
-
+//2015-05-28T09:00:00-07:00
         var eventz = {
             'summary': 'Move Car ' + title,
             'location': title,
@@ -103,7 +105,7 @@ $.getJSON('/data1.geojson', function(data) {
             },
             'end': {
                 'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
-                    temp[2] + '-07:00',
+                    temp[3] + '-07:00',
                 'timeZone': 'America/Los_Angeles'
             },
             'recurrence': ['RRULE:FREQ=DAILY;COUNT=1'],
@@ -148,7 +150,7 @@ $.getJSON('/data1.geojson', function(data) {
             });
         var temp = location[0].split(" ")
 
-        var nextWednesday = dateOfNext(dayOfWeekAsInteger(temp[3]));
+        var nextWednesday = dateOfNext(dayOfWeekAsInteger(temp[4]));
         var movedate = nextWednesday.getDate();
         var movemonth = nextWednesday.getMonth() + 1;
         var movedates = ((movedate < 10) ? '0' + movedate : movedate);
@@ -161,12 +163,12 @@ $.getJSON('/data1.geojson', function(data) {
             'description': title,
             'start': {
                 'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
-                    temp[4] + '-07:00',
+                    temp[5] + '-07:00',
                 'timeZone': 'America/Los_Angeles'
             },
             'end': {
                 'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
-                    temp[5] + '-07:00',
+                    temp[7] + '-07:00',
                 'timeZone': 'America/Los_Angeles'
             },
             'recurrence': ['RRULE:FREQ=DAILY;COUNT=1'],
