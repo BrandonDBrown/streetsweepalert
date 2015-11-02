@@ -1,11 +1,8 @@
-<div class="bg"></div>
 <div class="row splash">
     <div class="col-md-4 col-md-offset-4 col-xs-12 box">
-    <div class="logos">Sweep Alert</div>
-    <%= image_tag("truck.png", class:"truck col-xs-offset-4") %>    
-    <div class="logos tagline">Avoid street sweeping tickets.</div>
-        
-    <%= button_to "Log in with Gmail", "/auth/google_oauth2",class:"btn btn-primary btn-xl login" %>
+        <div class="logos">Sweep Alert</div>
+        <%= image_tag("truck.png", class:"truck col-xs-offset-4") %>    
+        <div class="logos tagline">Avoid street sweeping tickets.</div>
     </div>
 </div>
 
@@ -17,10 +14,12 @@
     </div>
 </div>
 
-
-
-
-
+<div class="row ribbons">
+    <!--DIRECTIONS INTRO RIBBON-->
+    <div class= "col-md-12">
+        <%= button_to "Log in with Gmail", "/auth/google_oauth2",class:"btn btn-primary btn-xl intro1" %>
+    </div>
+</div>
 
 
 
