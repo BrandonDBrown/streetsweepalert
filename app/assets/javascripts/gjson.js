@@ -93,19 +93,21 @@ $.getJSON('/data1.geojson', function(data) {
         var movemonths = ((movemonth < 10) ? '0' + movemonth : movemonth);
 
         var title = location[1];
-//2015-05-28T09:00:00-07:00
+        
+//2015-05-28T09:00:00-07:00 due to google calendar api and daylight savings time i am temporarily changing 07:00 to 08:00.  Will need to find a fix for this in the future.
+        
         var eventz = {
             'summary': 'Move Car ' + title,
             'location': title,
             'description': title,
             'start': {
                 'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
-                    temp[1] + '-07:00',
+                    temp[1] + '-08:00',
                 'timeZone': 'America/Los_Angeles'
             },
             'end': {
                 'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
-                    temp[3] + '-07:00',
+                    temp[3] + '-08:00',
                 'timeZone': 'America/Los_Angeles'
             },
             'recurrence': ['RRULE:FREQ=DAILY;COUNT=1'],
@@ -163,12 +165,12 @@ $.getJSON('/data1.geojson', function(data) {
             'description': title,
             'start': {
                 'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
-                    temp[5] + '-07:00',
+                    temp[5] + '-08:00',
                 'timeZone': 'America/Los_Angeles'
             },
             'end': {
                 'dateTime': y + '-' + movemonths + '-' + movedates + 'T' +
-                    temp[7] + '-07:00',
+                    temp[7] + '-08:00',
                 'timeZone': 'America/Los_Angeles'
             },
             'recurrence': ['RRULE:FREQ=DAILY;COUNT=1'],
